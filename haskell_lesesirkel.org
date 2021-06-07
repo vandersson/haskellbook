@@ -1,0 +1,91 @@
+* Kapitel 1
+Lambda calculus
+** intermission
+1: \xy.xz -- y brukes ikke
+kan skrives \x.\y.xz
+er lik b \mn.mz -> [x := m] [y := n]
+
+2: \xy.xxy 
+blir lik c) \a.(\b.aab) pga currying og [ x := a ] [y := b ]
+
+3: \xyz.zx -- y brukes ikke
+er lik b) \tos.st -> [x := t] [y := o] [z := s]
+** Excercises
+*** Combinators
+is following function a combinator?
+1: \x.xxx -> yes: x is bound
+2: \xy.zx -> no: z is a free variable
+3: \xyz.xy(zx) -> yes: body contains x,y & z and all are bound in head
+4: \xyz.xy(zxy) -> yes: all variables in body are  bound in head
+5: \xy.xy(zxy) -> no: z is a free variable
+
+*** normal form or diverge?
+does the following expression converge to normal form or does it diverge?
+1: \x.xxx -> normal form: obv
+2: (\z.zz)(\y.yy) -> diverge: reduces to (\y.yy)(\y.yy) which is alpha equivelent to original
+3: (\x.xxx)z -> converge to zzz
+
+*** Beta reduce
+Beta reduce the following:
+1: (\abc.cba)zz(\wv.w)
+[a := z],[b := z],[c := (\wv.w)]
+(\wv.w)zz
+[w := z],[v := z]
+z
+
+2: (\x.\y.xyy)(\a.a)b
+[x := (\a.a)]
+(\y.(\a.a)yy)b
+[y := b]
+(\a.a)bb
+[a := b]
+bb
+
+3: (\y.y)(\x.xx)(\z.zq)
+[y = (\x.xx)]
+(\x.xx)(\z.zq)
+[x := (\z.zq)]
+(\z.zq)(\z.zq)
+[z := (\z.zq)]
+(\z.zq)q
+[z := q]
+qq
+
+4:(\z.z)(\z.zz)(\z.zy)
+[z := (\z.zz)]
+(\z.zz)(\z.zy)
+[z := (\z.zy)]
+(\z.zy)(\z.zy)
+[z := (\z.zy)]
+(\z.zy)y
+[z := y]
+yy
+
+Hinten forstod jeg inget av. hva mener dem med alpha equivelence her?
+
+5: (\x.\y.xyy)(\y.y)y
+[x := (\y.y)]
+\y.(\y.y)yy)y
+[y := y]
+(\y.y)yy
+[y := y]
+yy
+
+6: (\a.aa)(\b.ba)c
+[a := (\b.ba)]
+(\b.ba)(\b.ba)c
+[b := (\b.ba)]
+(\b.ba)ac
+[b := a]
+aac
+
+7: (\xyz.xz(yz))(\x.z)(\x.a)
+(\x.\y.\z.xz(yz))(\x.z)(\x.a)
+[x =: (\x.z)]
+(\y.\z1.(\x.z)z1(yz1))(\x.a)
+[y : (\x.a)]
+(\z1.(\x.z)z1((\x.a)z1))
+[x2 := z1]
+(\z1.(\x.z)z1a) -- Her gjorde jeg i annen rekkefølge enn svaret fordi det var parantese rundt ((\x.a)z1). Det har jo ikke noe å si her da siden vi endte opp på samme svar
+[x := z1]
+(\z1.za)
