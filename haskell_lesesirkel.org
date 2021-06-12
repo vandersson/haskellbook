@@ -1,3 +1,4 @@
+
 * Kapitel 1
 Lambda calculus
 ** intermission
@@ -89,3 +90,9 @@ aac
 (\z1.(\x.z)z1a) -- Her gjorde jeg i annen rekkefølge enn svaret fordi det var parantese rundt ((\x.a)z1). Det har jo ikke noe å si her da siden vi endte opp på samme svar
 [x := z1]
 (\z1.za)
+* Kapitel 2
+** Excercies parens
+1: Results are changed. * is normally evaluated before +
+2: same, see reason from 1)
+3: changed. / normally has higher precedence 
+
